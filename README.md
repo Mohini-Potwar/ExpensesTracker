@@ -1,4 +1,4 @@
-https://github.com/Mohini-Potwar/ExpensesTracker/issues/1#issue-2543371516
+![homepage](https://github.com/user-attachments/assets/1cbac21b-82c2-4459-90cd-7bc2ba97963c)
 
 # Expenses-Tracker-WebApp
 ## Overview
