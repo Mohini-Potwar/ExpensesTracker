@@ -1,16 +1,21 @@
-HomePage
+    HomePage
+
 ![homepage](https://github.com/user-attachments/assets/1cbac21b-82c2-4459-90cd-7bc2ba97963c)
 
-Registration Page
+   Registration Page
+
 ![image](https://github.com/user-attachments/assets/be7db371-fc0b-491f-8c8a-2b8dffe11298)
 
-Sign-in Page
+   Sign-in Page
+
 ![sign-in](https://github.com/user-attachments/assets/fd5f6551-770c-42ed-8461-7fe205b90ee8)
 
-TrackExpense Page
+  TrackExpense Page
+
 ![track](https://github.com/user-attachments/assets/32a96a44-35d3-4e41-ae3b-21eca20f2bbb)
 
-Alert Page 
+  Alert Page 
+
 ![alert](https://github.com/user-attachments/assets/368a558e-721d-4543-a145-77aa9a2991f1)
 
 
