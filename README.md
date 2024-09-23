@@ -1,4 +1,5 @@
 ![homepage](https://github.com/user-attachments/assets/1cbac21b-82c2-4459-90cd-7bc2ba97963c)
+![registration](https://github.com/user-attachments/assets/3f2dcfab-5233-43c5-82e9-60ddd1f4cddc)
 
 # Expenses-Tracker-WebApp
 ## Overview
