@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Expenses</title>
+
+    <!-- Chart.js CDN for rendering the chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* Custom styles for the simplified navbar */
+        .navbar {
+            background-color: #ffffff; /* White background */
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for the navbar */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar-nav {
+            margin-left: auto; /* Push the nav items to the right */
+        }
+
+        .navbar-nav .nav-link {
+            color: #333;
+            font-size: 16px;
+            padding: 5px 10px;
+            text-decoration: none;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #007BFF; /* Hover effect */
+        }
+
+        /* General page styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f3;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            margin-top: 70px; /* Adjust based on the navbar height */
+        }
+
+        .track-expenses-container {
+            width: 90%; /* Adjusted width for better responsiveness */
+            max-width: 800px; /* Maximum width for larger screens */
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff; /* White background for the container */
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .track-expenses-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #007BFF; /* Color for the header */
+        }
+
+        .track-expenses-container canvas {
+            width: 100% !important; /* Make the canvas responsive */
+            height: auto; /* Maintain aspect ratio */
+            max-height: 400px; /* Set a maximum height for the chart */
+        }
+
+        .track-expenses-container .btn {
+            background-color: #007BFF; /* Blue color */
+            color: white; /* Text color */
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto; /* Add margin above and below */
+            text-align: center;
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+
+        .track-expenses-container .btn:hover {
+            background-color: #0056b3; /* Darker blue for hover effect */
+        }
+
+        .track-expenses-container p {
+            text-align: center;
+            color: #666;
+            margin-top: 20px;
+        }
+        
+        .navbar-brand {
+        font-family: 'Poppins', sans-serif; /* Use a clean, modern font */
+        font-size: 28px; /* Increase the font size */
+        font-weight: 700; /* Make it bold */
+        color: #007BFF; /* Blue color */
+        letter-spacing: 1px; /* Add some spacing between the letters */
+        text-decoration: none; /* Remove underline */
+    }
+
+    .navbar-brand:hover {
+        color: #0056b3; /* Slightly darker blue on hover */
+    }
+
+    /* Optional: Add Google Fonts for Poppins */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+        
+    </style>
+</head>
+<body>
+
+<!-- Navbar with one option -->
+<nav class="navbar">
+    <div class="container">
+        <!-- Link to the homepage (replace href with the actual homepage URL) -->
+        <a class="navbar-brand" href="/">BudgetBuddy</a>
+
+        
+    </div>
+</nav>
+
+<!-- Main content: Track Expenses section -->
+<div class="track-expenses-container">
+    <h2>Track Your Expenses</h2>
+    
+    <!-- Button to track expenses -->
+    <button onclick="location.href='/track-expenses'" class="btn">Track Expenses</button>
+    
+    <!-- Canvas for chart rendering -->
+    <canvas id="expenseChart"></canvas>
+
+    <p>Visualize your spending trends over time.</p>
+</div>
+
+<!-- Chart.js script for rendering the chart -->
+<script>
+    window.onload = function () {
+        const expenseChartElement = document.getElementById('expenseChart');
+        if (expenseChartElement) {
+            fetch('/expenses-data')  // Fetch expense data from the server
+                .then(response => response.json())
+                .then(data => {
+                    const labels = data.map(expense => expense.category.name);  // Use category names for labels
+                    const amounts = data.map(expense => expense.amount);  // Use amounts for data
+
+                    // Define colors for the chart bars
+                    const colors = ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'];
+
+                    const ctx = expenseChartElement.getContext('2d');
+                    new Chart(ctx, {
+                        type: 'bar',  // Bar chart type
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Expenses',
+                                data: amounts,
+                                backgroundColor: colors.slice(0, amounts.length),  // Dynamically assign colors
+                                borderColor: colors.slice(0, amounts.length).map(color => color.replace('0.2', '1')),
+                                borderWidth: 1,
+                                barThickness: 30  // Set bar width
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                })
+                .catch(error => console.error('Error fetching expense data:', error));
+        }
+    };
+</script>
+
+</body>
+</html>

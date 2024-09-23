@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Expenses Tracker Main Page</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/favicon.ico}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+          <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Lato:400,300" rel="stylesheet">
+          
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        .masthead {
+    height: 60vh; /* Adjust height as needed */
+    display: flex;
+    align-items: center; /* Center content vertically */
+    justify-content: space-between; /* Distribute space between items */
+    flex-direction: row; /* Align items in a row */
+    padding: 0 15%; /* Add padding on the sides */
+}
+
+.text-uppercase {
+ font-family: "Times New Roman", Times, serif;
+}
+
+
+.masthead-content {
+    text-align: left; /* Ensure text is left-aligned */
+    max-width: 50%; /* Limit text width */
+    padding-right: 20px; /* Add some space between the text and the image */
+}
+
+.lead {
+    color: black;
+    font-size: 1.5rem;
+    font-weight: 300;
+  font-family: "Times New Roman", Times, serif;
+}
+
+#about {
+    padding: 80px 0; /* Increase padding for about section */
+}
+
+.page-section-heading {
+    text-align: center; /* Center the "About" title */
+    margin-bottom: 40px; /* Add space below the title */
+}
+        .masthead-subheading {
+    color: blue;
+    font-size: 2rem; /* Heading size */
+    font-weight: bold; /* Bold font */
+    font-family: 'Montserrat', sans-serif; /* Change to your desired font */
+}
+
+.lead {
+    color: blue;
+    font-size: 1.5rem; /* Subheading size */
+    font-weight: 300; /* Lighter weight */
+    font-family: 'Lato', sans-serif; /* Change to your desired font */
+}
+        .masthead-subheading { 
+        align-content: left;
+         font-family: "Times New Roman", Times, serif !important;
+         }
+         .masthead-heading{
+         margin-left: 100px;
+         }
+             </style>
+</head>
+<body id="page-top">
+    <div th:replace="${session.client != null} ? ~{fragments/navbar :: navbar(yes, no, no, yes, yes, yes)} : ~{fragments/navbar :: navbar(yes, yes, yes, no, no, no)}"></div>
+    
+  <header class="masthead bg-primary text-white">
+    <div class="masthead-content d-flex flex-column justify-content-center align-items-start">
+        <h1 class="masthead-heading text-uppercase mb-0" style="margin-left: 100px;">BudgetBuddy</h1>
+        
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        
+        <p class="masthead-subheading text-start" style="font-size: 2.5rem; font-weight: 500; color: #007bff; text-align: left; margin-left: 0;">
+            Master Your Money: Track Every Penny!
+        </p>
+        
+        <p class="lead mt-4 text-start" style="font-size: 1.1rem; line-height: 1.6; color: #555; text-align: left; margin-left: 0;">
+            Track your expenses effortlessly with BudgetBuddy. Our app provides insightful analysis, budget tracking, and customizable categories for all your financial needs.
+        </p>
+        
+        <!-- Buttons below the last paragraph -->
+        <div class="d-flex mt-4">
+            <a href="#suggestions" class="btn" style="background-color: #007C92; color: white; width: 200px; margin-right: 10px;">
+                Get a demo
+            </a>
+            
+        </div>
+    </div>
+    
+    <img class="masthead-avatar mb-5" th:src="@{/assets/img/new.svg}" alt="..." style="width:50rem; margin-left: auto; padding-top: 150px;"/>
+</header>
+  
+    
+    <section class="page-section mb-0 portfolio" id="about" style="padding-top: 120px;">
+        <div class="container">
+            <h2 class="page-section-heading text-center text-uppercase" style="color: light blue">About</h2>
+            <div class="divider-custom divider-dark">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <div class="row">
+                <div class="row">
+    <div class="row">
+    <div class="col-lg-4 ms-auto custom-spacing">
+        <p class="lead text-justify">
+            Introducing our Expenses Tracker app—a simple solution for effortless
+            financial management. Track expenses, set budgets, and gain insights
+            with user-friendly features. Record all your expenses and be aware of
+            your pocket.
+        </p>
+    </div>
+    <div class="col-lg-4 me-auto">
+        <p class="lead text-justify">
+            Enjoy a personalized experience with customizable categories. Available on web platforms for seamless access. Take control of your finances today with our intuitive and secure app.
+        </p>
+    </div>
+</div>
+    
+</div>
+                
+        </div>
+    </section>
+    <footer class="footer text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase mb-4">Location</h4>
+                    <p class="lead mb-0">Nagpur,Maharashtra,India</p>
+                </div>
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase mb-4">Around the Web</h4>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#" style="background-color: black; color: white;">
+    <i class="fab fa-fw fa-facebook-f" style="color: white;"></i>
+</a>
+<a class="btn btn-outline-light btn-social mx-1" href="#" style="background-color: black; color: white;">
+    <i class="fab fa-fw fa-twitter" style="color: white;"></i>
+</a>
+<a class="btn btn-outline-light btn-social mx-1" href="#" style="background-color: black; color: white;">
+    <i class="fab fa-fw fa-linkedin-in" style="color: white;"></i>
+</a>
+<a class="btn btn-outline-light btn-social mx-1" href="#" style="background-color: black; color: white;">
+    <i class="fab fa-fw fa-dribbble" style="color: white;"></i>
+</a>
+                    >
+                </div>
+                <div class="col-lg-4">
+                    <h4 class="text-uppercase mb-4">About Expenses Tracker</h4>
+                    <p class="lead mb-0">Expenses Tracker is a free to use ransform Your Finances: Track, Analyze, Prosper
+                      </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="copyright py-4 text-center text-white"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script th:src="@{/js/scripts.js}"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html> 
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <style>
+        /* Custom styles for the navbar */
+        .navbar {
+            background-color: #ffffff; /* White background for navbar */
+            border-bottom: 1px solid #ddd; /* Light border for separation */
+            padding: 1rem;
+        }
+
+        .navbar-brand {
+            color: #007BFF; /* Light blue for brand */
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link {
+            color: #007BFF; /* Light blue for nav links */
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #0056b3; /* Darker blue on hover */
+            background-color: #f0f8ff; /* Light blue hover background */
+            border-radius: 5px; /* Slightly rounded corners */
+        }
+
+        .navbar-toggler {
+            border-color: #007BFF;
+        }
+
+        .navbar-toggler-icon {
+            color: #007BFF;
+        }
+
+        .btn-light-blue {
+            background-color: #007BFF; /* Bright blue button color */
+            color: white; /* White text color */
+            transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+            border: none; /* Remove default border */
+            border-radius: 5px; /* Rounded corners */
+        }
+
+        .btn-light-blue:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: scale(1.05); /* Slightly scale up the button on hover */
+        }
+        .container{
+         font-family: "Times New Roman", Times, serif;
+         }
+         .navbar-brand{
+         margin-left: 50px;}
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" id="mainNav"
+     th:fragment="navbar(showAbout, showIn, showUp, showList, showAdd, showProfile)">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}" style="margin-left: 120px;">BudgetBuddy</a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li th:if="${showAbout == 'yes'}" class="nav-item mx-0 mx-lg-1"><a
+                        class="nav-link rounded" href="#about">About</a></li>
+                <li th:if="${showIn == 'yes'}" class="nav-item mx-0 mx-lg-1"><a
+                        class="nav-link rounded" th:href="@{/showLoginPage}">Sign in</a></li>
+                <li th:if="${showUp == 'yes'}" class="nav-item mx-0 mx-lg-1"><a
+                        class="nav-link rounded" th:href="@{/showRegistrationForm}">Sign up</a></li>
+                <li th:if="${showList == 'yes'}" class="nav-item mx-0 mx-lg-1"><a
+                        class="nav-link rounded" th:href="@{/list}">Show Expenses</a></li>
+                <li th:if="${showAdd == 'yes'}" class="nav-item mx-0 mx-lg-1"><a
+                        class="nav-link rounded" th:href="@{/showAdd}">Add Expense</a></li>
+                <li th:if="${showProfile == 'yes'}" class="nav-item mx-0 mx-lg-1">
+                    <a href="/track-expenses" class="nav-link rounded">Track Expenses</a>
+                </li>
+                <li th:if="${showProfile == 'yes'}" class="nav-item mx-0 mx-lg-1">
+    <form th:action="@{/logout}" method="post" style="display: inline;">
+        <button type="submit" class="btn btn-light-blue">
+            <i class="fa-solid fa-arrow-right-from-bracket fa-1x"></i>
+            Logout
+        </button>
+    </form>
+</li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>
+

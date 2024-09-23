@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Sign In Page</title>
+    <style>
+        body {
+            background-color: #f8f9fa; /* Soft white background */
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .form-floating label {
+            color: #555; /* Subtle label color */
+        }
+
+        .form-floating input {
+            border: none;
+            border-bottom: 2px solid #007bff; /* Blue underline */
+            background-color: transparent;
+            border-radius: 0;
+        }
+
+        .form-floating input:focus {
+            border-bottom-color: #0056b3; /* Darker blue on focus */
+            box-shadow: none;
+            outline: none;
+        }
+
+        .btn-custom {
+            background-color: #007bff; /* Primary blue button */
+            color: #fff;
+            border-radius: 25px;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+            margin-top: -10px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff; /* White card background */
+        }
+
+        h2 {
+            color: #007bff; /* Heading blue color */
+        }
+
+        .footer {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        .footer p a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .footer p a:hover {
+            color: #d1ecf1;
+            
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation-->
+<div th:replace="fragments/navbar :: navbar('no', 'yes', 'yes', 'no', 'no', 'no')"></div>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <!-- Form Column -->
+            <div class="col-lg-6">
+                <div class="card p-4">
+                    <div class="text-center mb-5">
+                        <h2 class="fw-bold">Sign In</h2>
+                        
+                    </div>
+
+                    <div th:if="${param.error}">
+                        <div class="alert alert-danger" role="alert">
+                            Invalid username or password
+                        </div>
+                    </div>
+                    <div th:if="${param.logout}">
+                        <div class="alert alert-success" role="alert">
+                            You have been logged out
+                        </div>
+                    </div>
+                    <div th:if="${param.registrationSuccess}">
+                        <div class="alert alert-success" role="alert">
+                            You have been signed up successfully, you can sign in now.
+                        </div>
+                    </div>
+
+                    <form action="#" th:action="@{/authenticateTheUser}" method="post">
+                        <div class="row gy-4">
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="username" id="userName" placeholder="Username" required>
+                                    <label for="userName">Username</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+                                    <label for="password">Password</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="row justify-content-between">
+                                    <div class="col-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember_me">
+                                            <label class="form-check-label text-secondary" for="remember_me">
+                                                Remember me
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <a href="#!" class="link-secondary text-decoration-none">Forgot password?</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-grid">
+                                    <button class="btn btn-custom btn-lg" type="submit">Log In</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="text-center mt-4">
+                        <p>Don't have an account? <a th:href="@{/showRegistrationForm}">Sign up</a></p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer-->
+<footer class="footer text-center py-3 mt-5">
+    <div class="container">
+        <p class="mb-0">© 2024 Expenses Tracker. <a th:href="@{/privacy}">Privacy Policy</a></p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
